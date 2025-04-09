@@ -18,7 +18,7 @@ contract JogoDaVelha {
     // Representação do estado do jogo
     uint8 public estadoJogo;
     
-    // Eventos para registro de jogadas e status final
+    // Registro das jogadas 
     event Jogada(address jogador, uint8 linha, uint8 coluna, uint8 simbolo);
     event FimDeJogo(uint8 resultado);  // 1: jogador1 venceu, 2: jogador2 venceu, 3: empate
 
@@ -28,19 +28,19 @@ contract JogoDaVelha {
         _;
     }
     
-    // Funções acessivieis para apenas quem é dona do contrato
+    // Funções acessivieis para apenas quem é dono do contrato
     modifier somenteDono() {
         require(msg.sender == dono, "Apenas o dono do contrato pode executar esta operacao.");
         _;
     }
     
-    // Define o dono do contrato.
+    // Define o dono do contrato
     constructor() {
         dono = msg.sender;
         estadoJogo = 0; // Jogo em andamento
     }
     
-    // Função que inicia a partida, registrando os dois jogadores.
+    // Função que inicia a partida, registrando os dois jogadores
     // jogador 1 sendo o 'X'
     // jogador 2 sendo o 'O'
     function iniciarPartida(address _jogador1, address _jogador2) public somenteDono {
@@ -49,7 +49,7 @@ contract JogoDaVelha {
         jogador2 = _jogador2;
         turnoJogador1 = true;
         estadoJogo = 0;
-        // Reinicia o tabuleiro, para que fique todas as posições vazias.
+        // Reinicia o tabuleiro, para que fique todas as posições vazias
         for(uint8 i = 0; i < 3; i++) {
             for(uint8 j = 0; j < 3; j++) {
                 tabuleiro[i][j] = 0;
@@ -66,7 +66,7 @@ contract JogoDaVelha {
         require(tabuleiro[linha][coluna] == 0, "Posicao ja ocupada.");
         
         uint8 simbolo;
-        // Faz a verificação para ve se é a vez do jogador correto.
+        // Faz a verificação para ve se é a vez do jogador correto
         if (turnoJogador1) {
             require(msg.sender == jogador1, "Nao e sua vez de jogar.");
             simbolo = 1; 
@@ -79,7 +79,7 @@ contract JogoDaVelha {
         tabuleiro[linha][coluna] = simbolo;
         emit Jogada(msg.sender, linha, coluna, simbolo);
         
-        // Faz a verificação para ver se houve um vencedor ou se foi empate.
+        // Faz a verificação para ver se houve um vencedor ou se foi empate
         if(verificarVitoria(simbolo)) {
             estadoJogo = simbolo; // 1 ou 2 indicando qual jogador venceu
             emit FimDeJogo(simbolo);
@@ -92,7 +92,7 @@ contract JogoDaVelha {
         }
     }
     
-    // Função interna para verificar se o jogador com 'simbolo' ganhou o jogo.
+    // Função interna para verificar se o jogador com 'simbolo' 'X' ou 'O' ganhou o jogo
    
     function verificarVitoria(uint8 simbolo) internal view returns (bool) {
         // Faz a verifiação das linhas e colunas
@@ -115,8 +115,7 @@ contract JogoDaVelha {
         return false;
     }
     
-    // Função interna para verificar se o jogo terminou em empate.
-    // true se todas as posições estiverem preenchidas e nenhum vencedor.
+    // Função interna para verificar se o jogo terminou em empate
     function verificarEmpate() internal view returns (bool) {
         for(uint8 i = 0; i < 3; i++) {
             for(uint8 j = 0; j < 3; j++) {
@@ -128,7 +127,7 @@ contract JogoDaVelha {
         return true;
     }
     
-    // Permite reiniciar o jogo caso tenha terminado (por empate ou vitória).
+    // Permite reiniciar o jogo caso tenha terminado 
     // Só o dono do contrato pode chamar esssa função
     function reiniciarJogo() public somenteDono {
         estadoJogo = 0;
@@ -141,7 +140,7 @@ contract JogoDaVelha {
         }
     }
     
-    // Faz um get para obter o estado atual do tabuleiro.
+    // Faz um get para obter o estado atual do tabuleiro
     function getTabuleiro() public view returns (uint8[3][3] memory) {
         return tabuleiro;
     }
