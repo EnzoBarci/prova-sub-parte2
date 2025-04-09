@@ -24,7 +24,7 @@
 
 - Crie um novo arquivo e copie o código "jogoDaVelha.sol" dentro da pasta "smart contract"
 
-- Selecione a versão do compilador que está no código
+- Selecione a versão do compilador 0.8.26 que está no código
 
 <div align="center">
 <sub>Figura 1 - Deploy</sub>
