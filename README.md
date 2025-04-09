@@ -87,6 +87,6 @@
 
 
 ## 4. Conclusão
-- Este código atende todas as regras que foram propostas na atividade. Podendo ser testadas e validadas pelas funções do contrato.
+- Esta entrega atende todas as regras que foram propostas na atividade. Podendo ser testadas e validadas pelas funções do contrato. Além de que o jogo é funcional.
 
-- Além de que o código faz o que é pedido na criação de um jogo da velha em solidity.
+
