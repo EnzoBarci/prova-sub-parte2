@@ -1,7 +1,9 @@
 # Prova Substitutiva - Parte 2 - Jogo da Velha em Solidity
-## Introdução:
+## 1. Introdução:
 
-## Regras de Negócio:
+**Atividade de desenvolvimento de um smart contract em Solidity para a implementação do jogo da velha, seguindo as boas práticas de desenvolvimento e controle de versão para garantir um jogo com regras transparentes e verificáveis.**
+
+## 2. Regras de Negócio:
 
 - O jogo tem que ser permitido para que apenas 2 jogadores possam jogar. Mas que também não possa ter apenas 1 jogador jogando.
 
@@ -14,8 +16,9 @@
 - O código tem que possuir um controle de acesso onde apenas os jogadores registrados podem jogar e apenas o dono do contrato pode resetar o jogo.
 
 
-## 4. Testes no Remix IDE
-**Para garantir que a compilação ocorra corretamente faça:**
+## 3. Testes no Remix IDE
+
+**3.1 Para garantir que a compilação ocorra corretamente faça:**
 
 - Abra o Remix IDE.
 
@@ -23,7 +26,12 @@
 
 - Selecione a versão do compilador que está no código
 
-**Fazendo agora a implantação:**
+<div align="center">
+<sub>Figura 1 - Deploy</sub>
+<img src="assets\remix.png" width="100%" >
+</div>
+
+**3.2 Implantação:**
 
 - Escolha o contrato "JogoDaVelha" e clique em "Deploy".
 
@@ -34,35 +42,32 @@
 <img src="assets\deploy.png" width="100%" >
 </div>
 
-
-**Realização de Jogadas:**
-
-- Execute a função jogar(linha, coluna) de forma alternada com os endereços registrados.
-
-- Verifique os eventos emitidos e o estado do tabuleiro usando getTabuleiro().
-
-- Verificação de Vitória ou Empate:
-
 <div align="center">
 <sub>Figura 2 - Adiciona Jogadores</sub>
 <img src="assets\adiciona-jogador.png" width="100%" >
 </div>
+
+**3.3 Realização de Jogadas:**
+
+- Execute a função jogar(linha, coluna) de forma alternada com os endereços registrados.
+
+- Verifique os eventos emitidos e o estado do tabuleiro usando getTabuleiro().
 
 <div align="center">
 <sub>Figura 3 - Realização de jogadas</sub>
 <img src="assets\realiza-jogadas.png" width="100%" >
 </div>
 
-**Verificar o estado do jogo:**
+**3.4 Verificar o estado do jogo:**
 
 - Utiliza a função estadoJogo para ver se alguém ganhou ou se teve empate no jogo. 0 = em andamento, 1 = jogador 1 ganhou, 2 = jogador 2 ganhou e 3 = empate.
 
 <div align="center">
-<sub>Figura 3 - Realização de jogadas</sub>
+<sub>Figura 4 - Estado do jogo</sub>
 <img src="assets\estado.png" width="100%" >
 </div>
 
-**Reiniciar o Jogo:**
+**3.5 Reiniciar o Jogo:**
 
 - Utilize a função reiniciarJogo() (apenas com o dono) e veja que o jogo foi reiniciado
 
@@ -71,9 +76,9 @@
 <img src="assets\reiniciar.png" width="100%" >
 </div>
 
-**Testes de autenticidade do dono do contrato**
+**3.6 Testes de autenticidade do dono do contrato**
 
-- Tentar fazer ações onde apenas o endereço do dono do contrato pode fazer.
+- Teste com um endereço de um usuário secundário, tentando fazer uma ação onde apenas o dono do contrato pode fazer.
 
 <div align="center">
 <sub>Figura 5 - Reiniciar jogo</sub>
@@ -81,9 +86,7 @@
 </div>
 
 
-## 5. Conclusão
+## 4. Conclusão
 - Este código atende todas as regras que foram propostas na atividade. Podendo ser testadas e validadas pelas funções do contrato.
-
-- O controle de acesse faz com que jogadas que não são permitidas não vão ocorrer, protegendo a integridade do jogo.
 
 - Além de que o código faz o que é pedido na criação de um jogo da velha em solidity.
